@@ -1,0 +1,32 @@
+.form {
+    width: 60vw;
+    margin: 150px auto 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__input {
+    width: min(400px, 50vw);
+    padding: 7px;
+    border:none;
+    border-radius: 5px 0 0 5px;
+}
+
+.form__input:focus {
+    outline: none;
+}
+
+.form__button {
+    padding: 7px 25px;
+    /* width: min(10vw; */
+    background-color: #bfd363;
+    color: #0f2aed;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.form__button:hover {
+    filter: brightness(150%);
+}

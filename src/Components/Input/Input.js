@@ -4,8 +4,9 @@ import "./input.css";
 
 export const Input = () => {
     return (
-        <div>
-            
-        </div>
+        <form className="form">
+            <input className="form__input"></input>
+            <button className="form__button">Detect</button>
+        </form>
     )
 }
