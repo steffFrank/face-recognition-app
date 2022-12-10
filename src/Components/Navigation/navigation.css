@@ -1,0 +1,10 @@
+.nav__signing {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: rgb(255, 255, 210);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nav__signing:hover {
+    filter: brightness(120%);
+}
