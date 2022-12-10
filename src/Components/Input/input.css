@@ -1,13 +1,13 @@
 .form {
-    width: 60vw;
     margin: 150px auto 30px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .form__input {
-    width: min(400px, 50vw);
+    width: min(500px, 70vw);
     padding: 7px;
     border:none;
     border-radius: 5px 0 0 5px;
@@ -29,4 +29,11 @@
 
 .form__button:hover {
     filter: brightness(150%);
+}
+
+.form p {
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
+    text-align: center;
+    color: #bfd363;
+    margin-bottom: 20px;
 }
