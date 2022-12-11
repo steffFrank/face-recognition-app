@@ -4,7 +4,7 @@ import Tilt from "react-parallax-tilt";
 
 export const Logo = () => {
     return (
-        <Tilt>
+        <Tilt className="tilt">
             <div className="logo">
                 <img src={require("./artificial_brain.png")} alt="Articificial brain"/>
             </div>

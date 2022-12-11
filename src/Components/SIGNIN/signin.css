@@ -1,0 +1,46 @@
+.main {
+    /* width: 500px; */
+    margin: auto;
+    display: flex;
+    margin-top: 300px;
+}
+
+.main__form {
+    /* width: 300px; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    background-color: rgba(15, 42, 237, 0.3);
+    padding: 30px 40px;
+    color: whitesmoke;
+    font-size: clamp(0.7rem, 1vw, 1.2rem);
+}
+
+.main__form h2 {
+    color: #bfd363;
+    font-size: clamp(1.2rem, 1.5vw, 1.7rem);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.main__form input {
+    margin-bottom: 25px;
+    font-size: clamp(1.1rem, 1.3vw, 1.5rem);
+    padding: 5px;
+}
+
+.main__form button {
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+
+.btn__register {
+    background-color: unset;
+    color: black;
+}
+
+.btn__register:hover {
+    color:#bfd363;
+}

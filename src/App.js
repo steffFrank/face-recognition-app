@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import "./App.css";
+import "./app.css";
 import { Navigation } from "./Components/Navigation/Navigation";
 import { Image } from "./Components/Image/Image";
 import { Input } from "./Components/Input/Input";
 import { Logo } from "./Components/Logo/Logo";
+import { Singin } from "./Components/SIGNIN/Signin";
 
 export const App = () => {
 
@@ -78,6 +79,7 @@ export const App = () => {
     <>
       <header className="header">
         <Logo />
+        <Singin />
         <Navigation />
       </header>
       <section>

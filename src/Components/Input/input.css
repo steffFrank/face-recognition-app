@@ -31,10 +31,6 @@
     cursor: pointer;
 }
 
-.form__button:hover {
-    filter: brightness(150%);
-}
-
 .form p {
     font-size: clamp(1.2rem, 2vw, 1.7rem);
     text-align: center;
