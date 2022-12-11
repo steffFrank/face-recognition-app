@@ -2,16 +2,15 @@ import React from "react";
 import "./input.css";
 import { Rank } from "../Rank/Rank";
 
-export const Input = () => {
+export const Input = ({onSubmit, input, onInputChange}) => {
     return (
-        <div className="form">
+        <form className="form" onSubmit={onSubmit}>
             <Rank />
             <p>The magic brain will detect faces in your pictures.Give it a try</p>
             <div>
-                <input className="form__input"></input>
-                <button className="form__button">Detect</button>    
+                <input type="text" value={input} onChange={onInputChange} className="form__input"></input>
+                <button type="submit" className="form__button">Detect</button>    
             </div>
-            
-        </div>
+        </form>
     )
 }
