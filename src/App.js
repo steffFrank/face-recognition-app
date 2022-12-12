@@ -4,13 +4,15 @@ import { Navigation } from "./Components/Navigation/Navigation";
 import { Image } from "./Components/Image/Image";
 import { Input } from "./Components/Input/Input";
 import { Logo } from "./Components/Logo/Logo";
-import { Singin } from "./Components/SIGNIN/Signin";
+import { Signin } from "./Components/SIGNIN/Signin";
+import { Register } from "./Components/Register/Register";
 
 export const App = () => {
 
     const [input , setInput] = useState("");
     const [imageSrc, setImageSrc] = useState("");
     const [boxRecognition, setBoxRecognition] = useState();
+    const [route, setRoute] = useState("home");
 
     const USER_ID = process.env.REACT_APP_USER_ID;
     const PAT = process.env.REACT_APP_PAT;
@@ -74,18 +76,22 @@ export const App = () => {
     setInput("");
   }
 
+  const onRouteChange = (newRoute) => {
+    setRoute(newRoute);
+  }
 
   return (
     <>
       <header className="header">
         <Logo />
-        <Singin />
-        <Navigation />
+        <Navigation onRouteChange={onRouteChange} route={route}/>
       </header>
+      {route === "home" ? <Signin onRouteChange={onRouteChange} /> : 
+      (route === "signin" ? 
       <section>
         <Input onSubmit={onSubmit} input={input} onInputChange={onInputChange}/>
         <Image imageInput={imageSrc} boxRecognition={boxRecognition}/>
-      </section>
+      </section> : (route === "register" ? <Register onRouteChange={onRouteChange} /> : <Signin onRouteChange={onRouteChange} />))}
     </>
   )
 }

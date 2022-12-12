@@ -1,10 +1,12 @@
 import React from "react";
 import "./navigation.css";
 
-export const Navigation = () => {
+export const Navigation = ({onRouteChange, route}) => {
+
     return (
         <nav className="nav">
-            <p className="nav__signing">Sign Out</p>
+            <p onClick={() => onRouteChange("home")} className="nav__signing">{route === "home" || route === "register" ? `Sign In` : `Sign Out`}</p>
+            {route === "home" && <p onClick={() => onRouteChange("register")} className="nav__signing">Register</p> }
         </nav>
     )
 }

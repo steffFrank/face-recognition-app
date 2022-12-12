@@ -1,8 +1,14 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+
 .nav__signing {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1.2rem, 2vw, 2rem);
     color: rgb(255, 255, 210);
     text-decoration: underline;
     cursor: pointer;
+    margin-right: 15px;
 }
 
 .nav__signing:hover {
