@@ -23,7 +23,7 @@ export const Image = ({imageInput, boxRecognition}) => {
         boxRecognition ? <div className="img-box" id="img-box">
                 <img id="image" onLoad={() => onLoad()} src={imageInput} alt="a random face" />
         </div> :
-        <div className="img-box__message">Please enter a correct URL</div>
+        <div className="img-box__message">Please enter a valid URL</div>
     )
 }
 
