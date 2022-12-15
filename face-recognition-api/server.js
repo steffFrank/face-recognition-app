@@ -42,12 +42,11 @@ app.post("/signin", (req, res) => {
 
 app.post("/register", (req, res) => {
     const {name, email, password } = req.body;
-    if (name && email && password) {
+    if (name !=="" && email !== "" && password !== "") {
         id++;
         database.users.push({id: id.toString(),
                         name,
                         email,
-                        password,
                         entries:0,
                         joined: new Date()})
         res.json("Registered with success");
