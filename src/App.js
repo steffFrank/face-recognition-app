@@ -13,7 +13,7 @@ export const App = () => {
     const [imageSrc, setImageSrc] = useState("");
     const [boxRecognition, setBoxRecognition] = useState();
     const [route, setRoute] = useState("home");
-
+    const [user, setUser] = useState({});
     const USER_ID = process.env.REACT_APP_USER_ID;
     const PAT = process.env.REACT_APP_PAT;
     const APP_ID = process.env.REACT_APP_APP_ID;
@@ -80,6 +80,14 @@ export const App = () => {
     setRoute(newRoute);
   }
 
+  const loadUser = user =>  {
+    setUser({id: user.id,
+              name:user.name,
+              email:user.id,
+              entries: user.entries,
+              joined: user.joined
+              })
+  }
   return (
     <>
       <header className="header">
@@ -91,7 +99,7 @@ export const App = () => {
       <section>
         <Input onSubmit={onSubmit} input={input} onInputChange={onInputChange}/>
         <Image imageInput={imageSrc} boxRecognition={boxRecognition}/>
-      </section> : (route === "register" ? <Register onRouteChange={onRouteChange} /> : <Signin onRouteChange={onRouteChange} />))}
+      </section> : (route === "register" ? <Register loadUser={loadUser} onRouteChange={onRouteChange} /> : <Signin onRouteChange={onRouteChange} />))}
     </>
   )
 }
