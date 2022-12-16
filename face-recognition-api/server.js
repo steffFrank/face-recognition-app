@@ -33,7 +33,14 @@ app.get("/", (req, res) => {
 
 app.post("/signin", (req, res) => {
     if (req.body.email === database.users[0].email && req.body.password === database.users[0].password) {
-        res.status(200).json(database.users[0]);
+        const user = {
+                id:database.users[0].id, 
+                name: database.users[0].name, 
+                email:database.users[0].email,
+                entries: database.users[0].entries,
+                joined: database.users[0].joined
+            }
+        res.status(200).json(user);
     } else {
         res.status(400).json("error loggin in!");
     }
@@ -44,12 +51,13 @@ app.post("/register", (req, res) => {
     const {name, email, password } = req.body;
     if (name !=="" && email !== "" && password !== "") {
         id++;
-        database.users.push({id: id.toString(),
-                        name,
-                        email,
-                        entries:0,
-                        joined: new Date()})
-        res.json("Registered with success");
+        const user = {id: id.toString(),
+            name,
+            email,
+            entries:0,
+            joined: new Date()}
+        database.users.push(user);
+        res.json(user);
     } else {
         res.status(401).json("something went wrong registrering");
     }

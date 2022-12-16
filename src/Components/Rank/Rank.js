@@ -2,11 +2,11 @@ import React from "react";
 import "./rank.css";
 
 
-export const Rank = () => {
+export const Rank = ({user}) => {
     return (
         <div className="rank">
-            <h1>User, your Rank is:</h1>
-            <h2>#5</h2>
+            <h1>{user.name}, your number of entry is :</h1>
+            <h2>#{user.entries}</h2>
         </div>
     )
 }

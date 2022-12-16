@@ -22,7 +22,8 @@ export const Register = ({onRouteChange, loadUser}) => {
         })
     }
 
-    const onSubmitChange = () => {
+    const onSubmitChange = (e) => {
+        e.preventDefault();
         fetch("http://localhost:3001/register", {
             method: "post",
             headers: {"content-Type": "applicaton/json"},
@@ -31,7 +32,8 @@ export const Register = ({onRouteChange, loadUser}) => {
           .then(user => {
             if (user) {
                 loadUser(user);
-                onRouteChange("home");
+                console.log(user);
+                onRouteChange("signin");
             }
           });
     }
