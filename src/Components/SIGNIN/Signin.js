@@ -27,7 +27,6 @@ export const Signin = ({ onRouteChange, loadUser }) => {
           onRouteChange("home");
         }
       });
-    // onRouteChange("home");
   };
 
   return (
@@ -55,6 +54,7 @@ export const Signin = ({ onRouteChange, loadUser }) => {
           Sign in
         </button>
         <button
+          type="button"
           onClick={() => onRouteChange("register")}
           className="btn btn__register"
         >
