@@ -2,10 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 app.use(express.json());
 app.use(cors());
-
 
 const db = require('knex')({
     client: 'pg',
@@ -62,28 +63,31 @@ const db = require('knex')({
 
 app.post("/register", (req, res) => {
     const {name, email, password } = req.body;
-    db("users")
-        .returning("*")
-        .insert({
-            email: email,
-            name: name,
-            joined: new Date()
+    bcrypt.genSalt(saltRounds, function(err, salt){
+        bcrypt.hash(password, salt, function(err, hash){
+            db.transaction(trx =>{
+                trx.insert({
+                    hash: hash,
+                    email:email
+                })
+                .into("login")
+                .returning("email")
+                .then(loginEmail => {
+                   return trx("users")
+                    .returning("*")
+                    .insert({
+                        email: loginEmail[0].email,
+                        name: name,
+                        joined: new Date()
+                    })
+                    .then(user => res.json(user[0]))
+                    .catch(err => res.status(400).json("Unable to register!"));
+                })
+                .then(trx.commit)
+                .catch(trx.rollback)
+            })
         })
-        .then(user => res.json(user[0]))
-        .catch(err => res.status(400).json("Unable to register!"));
-        
-    // if (name !=="" && email !== "" && password !== "") {
-        
-    //     const user = {id: id.toString(),
-    //         name,
-    //         email,
-    //         entries:0,
-    //         joined: new Date()}
-    //     database.users.push(user);
-    //     res.json(user);
-    // } else {
-    //     res.status(401).json("something went wrong registrering");
-    // }
+    })
 })
 
 app.get("/profile/:id", (req, res) => {
