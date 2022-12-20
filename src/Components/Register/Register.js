@@ -26,7 +26,7 @@ export const Register = ({onRouteChange, loadUser}) => {
         event.preventDefault();
         fetch("http://localhost:3001/register", {
             method: "post",
-            headers: {"content-Type": "applicaton/json"},
+            headers: {"content-Type": "application/json"},
             body: JSON.stringify(register)
         }).then(response => response.json())
           .then(user => {
@@ -50,7 +50,7 @@ export const Register = ({onRouteChange, loadUser}) => {
                 <input onChange={onEmailChange} name="email" className="email" type="email" autoComplete="username"></input>
                 <label htmlFor="password">Password</label>
                 <input onChange={onPasswordChange} name="password" className="password" autoComplete="new-password" type="password"></input>
-                <button onSubmit={onSubmitChange} className="btn btn__signin">Register</button>
+                <button  onClick={onSubmitChange} className="btn btn__signin">Register</button>
             </form>
         </main>
     )
