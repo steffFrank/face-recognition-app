@@ -62,8 +62,16 @@ const db = require('knex')({
 
 app.post("/register", (req, res) => {
     const {name, email, password } = req.body;
-    db('login').insert({hash:password, email:email}).returning('*').then(console.log)
-    res.json({id:125, name:name, email:email, entries:0, joined: new Date()})
+    db("users")
+        .returning("*")
+        .insert({
+            email: email,
+            name: name,
+            joined: new Date()
+        })
+        .then(user => res.json(user[0]))
+        .catch(err => res.status(400).json("Unable to register!"));
+        
     // if (name !=="" && email !== "" && password !== "") {
         
     //     const user = {id: id.toString(),
@@ -78,19 +86,17 @@ app.post("/register", (req, res) => {
     // }
 })
 
-// app.get("/profile/:id", (req, res) => {
-//     const { id } = req.params;
-//     let found = false;
-//     database.users.forEach(user => {
-//         if (user.id === id) {
-//             found = true;
-//             return res.json(user);
-//         }
-//     })
-//     if (!found) {
-//         res.status(404).json("user not found");
-//     }
-// })
+app.get("/profile/:id", (req, res) => {
+    const { id } = req.params;
+    db("users").select("*").from("users").where({id:id})
+    .then(user => {
+        if (user.length) {
+            res.json(user[0]) 
+        } else {
+            res.status(400).json("User not found")
+        }
+    })
+})
 
 
 // app.put("/image", (req, res) => {
