@@ -72,15 +72,25 @@ export const App = () => {
     setInput(e.target.value);
   };
 
+  const updateEntries = async (id) => {
+    const response  = await fetch("http://localhost:3001/image", {
+      method: "put",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({id})
+    })
+    const count = await response.json();
+    setUser(prevState => {
+      return {...prevState, entries: Number(count)}
+    })
+  }
+
   const onSubmit = (e) => {
     e.preventDefault();
     fetchUrl();
     setImageSrc(input);
     setBoxRecognition();
     setInput("");
-    setUser(prevState => {
-      return {...prevState, entries: prevState.entries + 1}
-    })
+    updateEntries(user.id);
   };
 
   const onRouteChange = (newRoute) => {
