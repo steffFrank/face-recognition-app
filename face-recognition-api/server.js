@@ -35,7 +35,6 @@ app.post("/signin", (req, res) => {
             if (result) {
                 db("users").select("*").where({email:email})
                 .then(userProfile => {
-                    console.log(userProfile);
                     res.json(userProfile[0])
                 })
             } else {
@@ -90,20 +89,19 @@ app.get("/profile/:id", (req, res) => {
 })
 
 
-// app.put("/image", (req, res) => {
-//     const { id } = req.body;
-//     let found = false;
-//     database.users.forEach(user => {
-//         if (user.id === id) {
-//             found = true;
-//             user.entries++;
-//             return res.json(user.entries);
-//         }
-//     })
-//     if (!found) {
-//         return res.status(400).json("user not found");
-//     }
-// })
+app.put("/image", (req, res) => {
+    const { id } = req.body;
+    db("users").where({id:id})
+    .increment("entries", 1)
+    .returning("entries")
+    .then(entries => {
+        res.json(entries[0].entries)
+    })
+    .catch(error => res.status(400).json("Something went wrong!"))
+})
+
+
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log("listening to port", PORT);
