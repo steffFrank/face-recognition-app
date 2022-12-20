@@ -19,26 +19,6 @@ const db = require('knex')({
   });
 
 
-// const database = {
-//     users: [
-//         {
-//             id:"124", 
-//             name: "Steff", 
-//             email:"steff@gmail.com",
-//             password: "1234",
-//             entries: 0,
-//             joined: new Date()
-//         },
-//         {
-//             id:"123", 
-//             name: "Frank", 
-//             email:"Frank@gmail.com",
-//             password: "1234",
-//             entries: 0,
-//             joined: new Date()
-//         }
-//     ]
-// }
 // let id = 124;
 // app.get("/", (req, res) => {
 //     res.send(database.users);
@@ -50,20 +30,20 @@ app.post("/signin", (req, res) => {
     db("login")
     .select("*")
     .where({email:email})
-    .returning("*")
     .then(user => {
         bcrypt.compare(password, user[0].hash, function(err, result){
             if (result) {
-                db("users").select("*").where({email:email}).returning("*")
+                db("users").select("*").where({email:email})
                 .then(userProfile => {
                     console.log(userProfile);
                     res.json(userProfile[0])
                 })
             } else {
-                res.status(404).json("User not found");
+                res.status(404).json("Wrong credentials");
             }
         })
     })
+    .catch(err => res.status(300).json("Wrong credentials"));
 })
 
 
