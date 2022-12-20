@@ -44,20 +44,27 @@ const db = require('knex')({
 //     res.send(database.users);
 // })
 
-// app.post("/signin", (req, res) => {
-//     if (req.body.email === database.users[0].email && req.body.password === database.users[0].password) {
-//         const user = {
-//                 id:database.users[0].id, 
-//                 name: database.users[0].name, 
-//                 email:database.users[0].email,
-//                 entries: database.users[0].entries,
-//                 joined: database.users[0].joined
-//             }
-//         res.status(200).json(user);
-//     } else {
-//         res.status(400).json("error loggin in!");
-//     }
-// })
+app.post("/signin", (req, res) => {
+    const {email, password} = req.body;
+   
+    db("login")
+    .select("*")
+    .where({email:email})
+    .returning("*")
+    .then(user => {
+        bcrypt.compare(password, user[0].hash, function(err, result){
+            if (result) {
+                db("users").select("*").where({email:email}).returning("*")
+                .then(userProfile => {
+                    console.log(userProfile);
+                    res.json(userProfile[0])
+                })
+            } else {
+                res.status(404).json("User not found");
+            }
+        })
+    })
+})
 
 
 
