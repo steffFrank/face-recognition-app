@@ -96,6 +96,7 @@ export const App = () => {
     if (route === "home") {
       setUser({});
       setImageSrc("");
+      setBoxRecognition();
     }
     setRoute(newRoute);
   };

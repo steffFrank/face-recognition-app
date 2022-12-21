@@ -42,8 +42,6 @@ export const Register = ({onRouteChange, loadUser}) => {
         <main className="main" >
             <form className="main__form">
                 <h2>Register</h2>
-                {/* <label htmlFor="first_name">Firstname</label>
-                <input name="first_name" className="first_name" type="text" autoComplete="username"></input> */}
                 <label htmlFor="last_name">Name</label>
                 <input onChange={onNameChange} name="last_name" className="last_name" type="text" autoComplete="username"></input>
                 <label htmlFor="email">Email</label>
