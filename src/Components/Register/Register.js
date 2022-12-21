@@ -30,7 +30,7 @@ export const Register = ({onRouteChange, loadUser}) => {
             body: JSON.stringify(register)
         }).then(response => response.json())
           .then(user => {
-            if (user) {
+            if (user.id) {
                 loadUser(user);
                 onRouteChange("signin");
             }

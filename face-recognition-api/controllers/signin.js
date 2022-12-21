@@ -1,6 +1,9 @@
 const handleSignin = (req, res, db, bcrypt) => {
 
     const {email, password} = req.body;
+    if (!email || !password) {
+        res.status(400).json("bad inputs");
+    }
    
     db("login")
     .select("*")

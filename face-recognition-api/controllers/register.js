@@ -1,5 +1,8 @@
 const handleRegister = (req, res, db, bcrypt, saltRounds) => {
     const {name, email, password } = req.body;
+    if (!name || !email || !password) {
+        res.status(400).json("bad inputs");
+    }
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(password, salt, function(err, hash){
             db.transaction(trx =>{
