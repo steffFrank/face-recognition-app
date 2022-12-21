@@ -7,7 +7,7 @@ export const Image = ({imageInput, boxRecognition}) => {
      // Use after the image loaded
   const onLoad = () => {
     const img_div = document.getElementById("img-box");
-
+  
     boxRecognition.forEach(item => {
       const box = document.createElement("div"); 
       box.className = "box-detect";
@@ -20,7 +20,7 @@ export const Image = ({imageInput, boxRecognition}) => {
   }
 
     return (
-        boxRecognition ? <div className="img-box" id="img-box">
+        boxRecognition !== undefined ? <div className="img-box" id="img-box">
                 <img id="image" onLoad={() => onLoad()} src={imageInput} alt="a random face" />
         </div> :
         <div className="img-box__message">Please enter a valid URL</div>

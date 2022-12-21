@@ -88,12 +88,15 @@ export const App = () => {
     e.preventDefault();
     fetchUrl();
     setImageSrc(input);
-    setBoxRecognition();
     setInput("");
     updateEntries(user.id);
   };
 
   const onRouteChange = (newRoute) => {
+    if (route === "home") {
+      setUser({});
+      setImageSrc("");
+    }
     setRoute(newRoute);
   };
 
